@@ -1,5 +1,5 @@
 {
-    "name": "symfony-cmf/resource-bundle",
+    "name": "eliberty/cmf-resource-bundle",
     "description": "Bundle which facilitates document resource location",
     "homepage": "http://cmf.symfony.com",
     "license": "MIT",
@@ -9,11 +9,17 @@
             "homepage": "https://github.com/symfony-cmf/symfony-cmf/contributors"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://e-liberty.repo.repman.rpstack.com"
+        }
+    ],
     "require": {
-        "php": "^7.1",
-        "symfony/framework-bundle": "^2.8 || ^3.3 || ^4.0",
-        "symfony/options-resolver": "^2.8 || ^3.3 || ^4.0",
-        "symfony-cmf/resource": "^1.0"
+        "php": "^7.4|^8.0",
+        "symfony/framework-bundle": "^3.3 || ^4.0",
+        "symfony/options-resolver": "^3.3 || ^4.0",
+        "eliberty/cmf-resource": "^1.0"
     },
     "require-dev": {
         "symfony-cmf/testing": "^2.1.8",
