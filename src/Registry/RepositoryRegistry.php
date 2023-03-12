@@ -23,13 +23,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class RepositoryRegistry implements RepositoryRegistryInterface
 {
-    private $container;
+    private \Symfony\Component\DependencyInjection\ContainerInterface $container;
 
-    private $serviceMap = [];
+    private array $serviceMap = [];
 
-    private $typeMap = [];
+    private array $typeMap = [];
 
-    private $names = [];
+    private array $names = [];
 
     private $defaultRepositoryName;
 

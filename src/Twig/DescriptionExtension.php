@@ -19,7 +19,7 @@ use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
  */
 class DescriptionExtension extends \Twig_Extension
 {
-    private $descriptionFactory;
+    private \Symfony\Cmf\Component\Resource\Description\DescriptionFactory $descriptionFactory;
 
     public function __construct(DescriptionFactory $descriptionFactory)
     {

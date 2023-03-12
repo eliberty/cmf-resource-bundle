@@ -42,9 +42,7 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->addDefaultsIfNotSet()
                         ->beforeNormalization()
-                            ->ifTrue(function ($n) {
-                                return is_array($n) && !isset($n['options']) && !isset($n['option']);
-                            })
+                            ->ifTrue(fn($n) => is_array($n) && !isset($n['options']) && !isset($n['option']))
                             ->then(function ($n) {
                                 $options = [];
 
@@ -67,11 +65,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('type')->isRequired()->end()
                             ->arrayNode('options')
                                 ->beforeNormalization()
-                                    ->ifTrue(function ($n) {
-                                        return is_array($n) && 0 !== count(array_filter($n, function ($i) {
-                                            return isset($i['collection']);
-                                        }));
-                                    })
+                                    ->ifTrue(fn($n) => is_array($n) && 0 !== count(array_filter($n, fn($i) => isset($i['collection']))))
                                     ->then(function ($n) {
                                         foreach ($n as $id => $item) {
                                             if (!is_array($item) || !isset($item['collection'])) {

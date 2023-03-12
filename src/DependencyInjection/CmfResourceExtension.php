@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CmfResourceExtension extends Extension
 {
-    private $repositoryFactories = [];
+    private array $repositoryFactories = [];
 
     /**
      * Return the full service ID for a given repository name.

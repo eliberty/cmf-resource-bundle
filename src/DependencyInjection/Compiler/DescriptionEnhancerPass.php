@@ -20,6 +20,7 @@ class DescriptionEnhancerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
+        $enhancers = [];
         if (!$container->has('cmf_resource.description.factory')) {
             return;
         }
@@ -55,7 +56,7 @@ class DescriptionEnhancerPass implements CompilerPassInterface
                 ));
             }
 
-            $priority = isset($attributes['priority']) ? $attributes['priority'] : 0;
+            $priority = $attributes['priority'] ?? 0;
             $enhancers[$name] = [$priority, new Reference($serviceId)];
         }
 
@@ -76,13 +77,9 @@ class DescriptionEnhancerPass implements CompilerPassInterface
         }
 
         // sort enhancers, higher = more priority
-        usort($enhancers, function ($a, $b) {
-            return -strcmp($a[0], $b[0]);
-        });
+        usort($enhancers, fn($a, $b) => -strcmp($a[0], $b[0]));
 
-        $enhancers = array_map(function ($enhancer) {
-            return $enhancer[1];
-        }, $enhancers);
+        $enhancers = array_map(fn($enhancer) => $enhancer[1], $enhancers);
 
         $registryDef = $container->getDefinition('cmf_resource.description.factory');
         $registryDef->replaceArgument(0, array_values($enhancers));
